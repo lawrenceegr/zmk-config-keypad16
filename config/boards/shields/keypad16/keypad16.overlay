@@ -61,7 +61,7 @@
 
     key_physical_attrs: key_physical_attrs {
         compatible = "zmk,key-physical-attrs";
-        #key-cells = <5>;   // now just x, y, rotation, row, col
+        #key-cells = <7>;   // now just x, y, rotation, row, col
         width = <100>;
         height = <100>;
     };
