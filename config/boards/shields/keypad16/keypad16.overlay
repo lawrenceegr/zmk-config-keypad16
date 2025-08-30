@@ -1,24 +1,12 @@
 / {
     chosen {
         zmk,kscan = &default_kscan;
-        zmk,physical-layout = &default_layout;
     };
 
-    /* Add new direct-wired switches */
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-direct";
         label = "default_kscan";
-        input-gpios = <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, /* Volume Down */
-                      <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>; /* Volume Up */
-    };
-
-    default_layout: default_layout {
-        compatible = "zmk,physical-layout";
-        display-name = "Volume Keys";
-        kscan = <&default_kscan>;
-
-        keys
-            = <&key_physical_attrs 100 100 500 0 0 0 0>   /* VOL- */
-            , <&key_physical_attrs 100 100 600 0 0 0 0>;  /* VOL+ */
+        input-gpios = <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
+                      <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>; 
     };
 };
