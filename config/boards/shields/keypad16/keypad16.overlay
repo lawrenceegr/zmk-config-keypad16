@@ -1,3 +1,4 @@
+// config/boards/shields/keypad16/keypad16.overlay
 / {
     chosen {
         zmk,kscan = &kscan0;
@@ -59,7 +60,7 @@
 
     key_physical_attrs: key_physical_attrs {
         compatible = "zmk,key-physical-attrs";
-        #key-cells = <5>;   // x, y, rotation, row, col
+        #key-cells = <6>;   // x, y, rotation, row, col, index
         width = <100>;
         height = <100>;
     };
