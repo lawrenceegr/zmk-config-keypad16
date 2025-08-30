@@ -1,11 +1,10 @@
-#include <physical_layouts.dtsi>
-
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &default_layout;
     };
 
+    /* Your existing 4x4 kscan0 matrix */
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
@@ -21,11 +20,19 @@
                     <&gpio0 15 GPIO_ACTIVE_HIGH>;
     };
 
+    /* Add new direct-wired switches */
+    kscan1: direct_keys {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&gpio0 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>, /* Volume Down */
+                      <&gpio0 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* Volume Up */
+    };
+
+    /* Matrix layout */
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <4>;
         rows = <4>;
-        map = <
+        map = 
             0  4  8 12
             1  5  9 13
             2  6 10 14
@@ -39,7 +46,8 @@
         transform = <&default_transform>;
         kscan = <&kscan0>;
 
-        keys // w h x y rot rx ry
+        /* 4x4 grid */
+        keys
             = <&key_physical_attrs 100 100   0   0 0 0 0>
             , <&key_physical_attrs 100 100 100   0 0 0 0>
             , <&key_physical_attrs 100 100 200   0 0 0 0>
@@ -57,5 +65,16 @@
             , <&key_physical_attrs 100 100 200 300 0 0 0>
             , <&key_physical_attrs 100 100 300 300 0 0 0>
         ;
+    };
+
+    /* Separate layout for direct-wired switches */
+    volume_layout: volume_keys {
+        compatible = "zmk,physical-layout";
+        display-name = "Volume Keys";
+        kscan = <&kscan1>;
+
+        keys
+            = <&key_physical_attrs 100 100 500 0 0 0 0>   /* VOL- */
+            , <&key_physical_attrs 100 100 600 0 0 0 0>;  /* VOL+ */
     };
 };
