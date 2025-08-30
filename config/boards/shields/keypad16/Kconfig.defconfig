@@ -1,0 +1,13 @@
+# This file was generated from a template. Edit it to match your keyboard.
+# See https://docs.zephyrproject.org/3.5.0/hardware/porting/board_porting.html#write-kconfig-files
+# for more information.
+
+if SHIELD_KEYPAD16
+
+config ZMK_KEYBOARD_NAME
+    default "keypad16"
+
+# config BT_CTLR
+#     default BT
+
+endif # SHIELD_KEYPAD16
