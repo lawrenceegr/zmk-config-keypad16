@@ -3,15 +3,7 @@
         compatible = "zmk,keymap";
         
         default_layer {
-            bindings = 
-                /* Direct switches: */
-                &kp VOL_DN &kp VOL_UP
-            >;
-        };
-        
-        function_layer {
-            bindings = 
-                /* Direct switches still mapped: */
+            bindings = <
                 &kp VOL_DN &kp VOL_UP
             >;
         };
